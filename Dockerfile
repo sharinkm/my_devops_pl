@@ -49,9 +49,9 @@
     COPY --from=builder /usr/sbin/nginx /usr/sbin/nginx
     COPY --from=builder /etc/nginx /etc/nginx
     
-    # Create required directories
-    RUN mkdir -p /var/cache/nginx /var/log/nginx /etc/nginx/conf.d \
-        && chown -R nginx:nginx /var/cache/nginx /var/log/nginx
+    # Create required directories and set permissions
+    RUN mkdir -p /etc/nginx/client_body_temp /var/cache/nginx /var/log/nginx /etc/nginx/conf.d /var/run/ \
+        && chown -R nginx:nginx /etc/nginx /var/cache/nginx /var/log/nginx /var/run/
     
     # Switch to non-root user
     USER nginx
